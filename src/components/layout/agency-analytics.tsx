@@ -273,10 +273,10 @@ export function AgencyAnalytics() {
           </div>
           
           <Tabs defaultValue="performance" className="relative z-10">
-            <TabsList className="grid md:grid-cols-4 grid-cols-3 w-full max-w-2xl mb-6 bg-background/40 backdrop-blur-md">
+            <TabsList className="grid md:grid-cols-4 grid-cols-2 w-full max-w-2xl mb-6 bg-background/40 backdrop-blur-md">
               <TabsTrigger value="performance" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary">Performance</TabsTrigger>
               <TabsTrigger value="channels" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary">Canais</TabsTrigger>
-              <TabsTrigger value="devices" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary">Dispositivos</TabsTrigger>
+              <TabsTrigger value="devices" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary hidden md:block">Dispositivos</TabsTrigger>
               <TabsTrigger value="budget" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary hidden md:block">Orçamento</TabsTrigger>
             </TabsList>
             
