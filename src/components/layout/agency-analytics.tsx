@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Container } from './container';
 import { motion } from 'framer-motion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Cell } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight, HelpCircle, TrendingUp, ChevronUp, Target, Percent, DollarSign, Sparkles, Award, Users, Zap } from 'lucide-react';
+
+// Lazy loading dos componentes de gráficos pesados
+const RechartsModule = lazy(() => import('./recharts-module'));
 
 const lineChartData = [
   { name: 'Jan', conversoes: 65, cliques: 400, ctr: 6.5 },
@@ -144,6 +146,13 @@ const BenefitTag = ({ icon, text }: { icon: React.ReactNode, text: string }) => 
     {icon}
     <span>{text}</span>
   </motion.div>
+);
+
+// Componente de fallback enquanto carrega gráficos
+const ChartLoadingFallback = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <div className="animate-pulse text-primary">Carregando gráfico...</div>
+  </div>
 );
 
 export function AgencyAnalytics() {
@@ -338,40 +347,9 @@ export function AgencyAnalytics() {
                     </div>
                   </div>
                   <div className="h-72">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
-                        data={lineChartData}
-                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                      >
-                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                        <XAxis 
-                          dataKey="name" 
-                          stroke="rgba(255,255,255,0.5)"
-                          tick={{ fill: '#ffffff', fontSize: 12 }}
-                          tickMargin={5}
-                        />
-                        <YAxis stroke="rgba(255,255,255,0.5)" />
-                        <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(18, 19, 27, 0.8)', backdropFilter: 'blur(10px)', borderColor: '#333', borderRadius: '8px', boxShadow: '0 0 10px rgba(84, 218, 87, 0.2)' }}
-                          labelStyle={{ color: '#fff' }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="conversoes" 
-                          stroke="#54da57" 
-                          strokeWidth={3}
-                          dot={{ r: 4, strokeWidth: 2, fill: '#1a1a1a' }}
-                          activeDot={{ r: 6, fill: '#54da57' }}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="ctr" 
-                          stroke="#888" 
-                          strokeDasharray="5 5" 
-                          strokeWidth={2} 
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                    <Suspense fallback={<ChartLoadingFallback />}>
+                      <RechartsModule type="line" data={lineChartData} />
+                    </Suspense>
                   </div>
                 </CardContent>
               </Card>
@@ -410,49 +388,9 @@ export function AgencyAnalytics() {
                     </div>
                     
                     <div className="h-96">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          data={barChartData}
-                          layout="vertical"
-                          margin={{ top: 5, right: 50, left: 70, bottom: 5 }}
-                          barSize={30}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                          <XAxis 
-                            type="number"
-                            stroke="rgba(255,255,255,0.5)" 
-                            tickFormatter={(value) => `${value}%`}
-                          />
-                          <YAxis 
-                            dataKey="name" 
-                            type="category"
-                            stroke="rgba(255,255,255,0.7)"
-                            tick={{ fill: '#ffffff', fontSize: 12 }}
-                            tickLine={false}
-                            width={70}
-                          />
-                          <Tooltip 
-                            contentStyle={{ backgroundColor: 'rgba(18, 19, 27, 0.8)', backdropFilter: 'blur(10px)', borderColor: '#333', borderRadius: '8px', boxShadow: '0 0 10px rgba(84, 218, 87, 0.2)' }}
-                            labelStyle={{ color: '#fff' }}
-                            formatter={(value) => [`${value}%`, 'Investimento']}
-                          />
-                          <Bar 
-                            dataKey="value" 
-                            name="Distribuição de Investimento"
-                            radius={[0, 4, 4, 0]} 
-                            label={{ 
-                              position: 'right', 
-                              fill: '#ffffff',
-                              fontSize: 12,
-                              formatter: (value: number) => `${value}%` 
-                            }}
-                          >
-                            {barChartData.map((entry, index) => (
-                              <Cell key={`cell-${index}`} fill={entry.fill} />
-                            ))}
-                          </Bar>
-                        </BarChart>
-                      </ResponsiveContainer>
+                      <Suspense fallback={<ChartLoadingFallback />}>
+                        <RechartsModule type="bar" data={barChartData} />
+                      </Suspense>
                     </div>
 
                     <Separator className="my-4 bg-border/30" />
@@ -533,31 +471,9 @@ export function AgencyAnalytics() {
                         </div>
                       </div>
                       <div className="h-60 flex items-center justify-center">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <PieChart margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-                            <Pie
-                              data={pieChartData}
-                              cx="50%"
-                              cy="50%"
-                              innerRadius={40}
-                              outerRadius={65}
-                              fill="#8884d8"
-                              paddingAngle={5}
-                              dataKey="value"
-                              label={({ name, value }) => `${name}: ${value}%`}
-                              labelLine={true}
-                            >
-                              {pieChartData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                              ))}
-                            </Pie>
-                            <Tooltip 
-                              contentStyle={{ backgroundColor: 'rgba(18, 19, 27, 0.8)', backdropFilter: 'blur(10px)', borderColor: '#333', borderRadius: '8px', boxShadow: '0 0 10px rgba(84, 218, 87, 0.2)' }}
-                              labelStyle={{ color: '#fff' }}
-                              formatter={(value) => [`${value}%`]}
-                            />
-                          </PieChart>
-                        </ResponsiveContainer>
+                        <Suspense fallback={<ChartLoadingFallback />}>
+                          <RechartsModule type="pie" data={pieChartData} />
+                        </Suspense>
                       </div>
 
                       <div className="flex justify-center space-x-4 mt-5">
@@ -593,29 +509,9 @@ export function AgencyAnalytics() {
                       </div>
                     </div>
                     <div className="h-80 flex items-center justify-center">
-                      <ResponsiveContainer width="70%" height="70%">
-                        <PieChart>
-                          <Pie
-                            data={pieChartData}
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={35}
-                            outerRadius={55}
-                            fill="#8884d8"
-                            paddingAngle={3}
-                            dataKey="value"
-                          >
-                            {pieChartData.map((entry, index) => (
-                              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-                          </Pie>
-                          <Tooltip 
-                            contentStyle={{ backgroundColor: 'rgba(18, 19, 27, 0.8)', backdropFilter: 'blur(10px)', borderColor: '#333', borderRadius: '8px', boxShadow: '0 0 10px rgba(84, 218, 87, 0.2)' }}
-                            labelStyle={{ color: '#fff' }}
-                            formatter={(value) => [`${value}%`]}
-                          />
-                        </PieChart>
-                      </ResponsiveContainer>
+                      <Suspense fallback={<ChartLoadingFallback />}>
+                        <RechartsModule type="simplePie" data={pieChartData} />
+                      </Suspense>
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 mt-4">
@@ -687,28 +583,9 @@ export function AgencyAnalytics() {
                       </div>
                     </div>
                     <div className="h-80">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                          data={[
-                            { name: 'Google', budget: 12000, spent: 10800, conversions: 580 },
-                            { name: 'Facebook', budget: 8000, spent: 7600, conversions: 420 },
-                            { name: 'Instagram', budget: 6000, spent: 5800, conversions: 310 },
-                            { name: 'LinkedIn', budget: 4000, spent: 3200, conversions: 150 },
-                            { name: 'TikTok', budget: 2000, spent: 1700, conversions: 95 },
-                          ]}
-                          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                        >
-                          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                          <XAxis dataKey="name" stroke="rgba(255,255,255,0.5)" />
-                          <YAxis stroke="rgba(255,255,255,0.5)" />
-                          <Tooltip 
-                            contentStyle={{ backgroundColor: 'rgba(18, 19, 27, 0.8)', backdropFilter: 'blur(10px)', borderColor: '#333', borderRadius: '8px', boxShadow: '0 0 10px rgba(84, 218, 87, 0.2)' }}
-                            labelStyle={{ color: '#fff' }}
-                          />
-                          <Bar dataKey="budget" fill="#54da57" radius={[4, 4, 0, 0]} opacity={0.3} />
-                          <Bar dataKey="spent" fill="#54da57" radius={[4, 4, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
+                      <Suspense fallback={<ChartLoadingFallback />}>
+                        <RechartsModule type="budgetBar" />
+                      </Suspense>
                     </div>
                   </CardContent>
                 </Card>
