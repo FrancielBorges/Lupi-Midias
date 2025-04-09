@@ -10,8 +10,13 @@ import './App.css';
 function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Normalmente aqui seria feita uma integração com backend ou serviço de email
-    window.location.href = '/obrigado';
+    // O Netlify capturará o envio do formulário automaticamente
+    // Esta função é mantida para garantir compatibilidade com testes locais
+    // Em produção, o Netlify gerenciará o redirecionamento
+    if (window.location.hostname !== 'localhost') {
+      // Em desenvolvimento, ainda redirecionamos manualmente
+      window.location.href = '/obrigado';
+    }
   };
 
   return (
@@ -71,7 +76,25 @@ function ContactPage() {
                       style={{ backgroundColor: 'rgba(84, 218, 87, 0.03)' }} 
                     />
                     
-                    <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+                    <form 
+                      name="contact" 
+                      method="POST" 
+                      data-netlify="true" 
+                      netlify-honeypot="bot-field"
+                      onSubmit={handleSubmit} 
+                      className="relative z-10 space-y-6"
+                      action="/obrigado"
+                    >
+                      {/* Campo oculto necessário para o Netlify Forms */}
+                      <input type="hidden" name="form-name" value="contact" />
+                      
+                      {/* Campo honeypot para evitar spam */}
+                      <p className="hidden">
+                        <label>
+                          Não preencha este campo se você for humano: <input name="bot-field" />
+                        </label>
+                      </p>
+                      
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-2">
