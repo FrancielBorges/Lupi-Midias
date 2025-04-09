@@ -234,9 +234,19 @@ export function Footer() {
                 <div className="frost-glass p-4 rounded-lg">
                   <p className="text-sm text-primary mb-2 font-medium">Transforme seu negócio</p>
                   <p className="text-xs text-foreground/70 mb-3">Pronto para ver seus resultados multiplicarem?</p>
-                  <Link to="/contato" className="text-xs bg-primary text-primary-foreground py-2 px-4 rounded inline-block hover:bg-primary/90 transition-colors">
+                  <button 
+                    onClick={() => {
+                      const contactForm = document.getElementById('contact-form');
+                      if (contactForm) {
+                        contactForm.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = '/contato';
+                      }
+                    }}
+                    className="text-xs bg-primary text-primary-foreground py-2 px-4 rounded inline-block hover:bg-primary/90 transition-colors"
+                  >
                     Fale Conosco
-                  </Link>
+                  </button>
                 </div>
               </li>
             </ul>
@@ -254,13 +264,13 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Lupi Mídias. Todos os direitos reservados.
           </p>
           <div className="flex flex-wrap gap-6 justify-center">
-            <Link to="/politica-de-privacidade#top" className="text-sm text-foreground/60 hover:text-primary transition-colors">
+            <Link to="/politica-de-privacidade" className="text-sm text-foreground/60 hover:text-primary transition-colors">
               Política de Privacidade
             </Link>
-            <Link to="/termos-de-servico#top" className="text-sm text-foreground/60 hover:text-primary transition-colors">
+            <Link to="/termos-de-servico" className="text-sm text-foreground/60 hover:text-primary transition-colors">
               Termos de Serviço
             </Link>
-            <Link to="/faq#top" className="text-sm text-foreground/60 hover:text-primary transition-colors">
+            <Link to="/faq" className="text-sm text-foreground/60 hover:text-primary transition-colors">
               FAQ
             </Link>
           </div>

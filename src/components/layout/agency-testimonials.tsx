@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 
 // Container component para manter consistência com outros componentes
 const Container = ({ className, children, ...props }: React.HTMLProps<HTMLDivElement>) => {
@@ -171,9 +172,19 @@ export function AgencyTestimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <a href="#contato" className="text-primary underline underline-offset-4 font-medium hover:text-primary/80">
-            Quer resultados como esses? Fale conosco
-          </a>
+          <Button
+            className="bg-primary hover:bg-primary/90 text-primary-foreground"
+            onClick={() => {
+              const contactForm = document.getElementById('contact-form');
+              if (contactForm) {
+                contactForm.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                window.location.href = '/contato';
+              }
+            }}
+          >
+            Quer resultados como esses? Fale Conosco
+          </Button>
         </motion.div>
       </Container>
     </section>
