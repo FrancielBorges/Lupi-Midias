@@ -1,0 +1,29 @@
+# Comandos para subir o projeto Lupi Mídias no GitHub
+# Copie e cole estes comandos em um PowerShell ou Prompt de Comando após instalar o Git
+
+# 1. Configure seu nome e email (substitua com suas informações)
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@exemplo.com"
+
+# 2. Navegue até a pasta do projeto (substitua pelo caminho correto se necessário)
+cd "E:\Franciel\Desktop\Projetos - Cursor\Lupi Mídias"
+
+# 3. Inicialize o repositório Git
+git init
+
+# 4. Adicione todos os arquivos
+git add .
+
+# 5. Faça o primeiro commit
+git commit -m "Versão inicial do site da Lupi Mídias"
+
+# 6. Adicione o repositório remoto
+git remote add origin https://github.com/FrancielBorges/Lupi-Midias.git
+
+# 7. Envie os arquivos para o GitHub
+git branch -M main
+git push -u origin main
+
+# Se for solicitado login, use seu nome de usuário do GitHub
+# Para a senha, você precisará usar um token pessoal ao invés da senha normal
+# Visite: https://github.com/settings/tokens para criar um token 

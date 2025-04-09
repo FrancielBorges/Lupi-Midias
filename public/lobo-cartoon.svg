@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <style>
+    .wolf-body { fill: #3a4b54; }
+    .wolf-light { fill: #54606a; }
+    .wolf-dark { fill: #2c3b44; }
+    .wolf-light-accent { fill: #b2bec3; }
+    .wolf-face { fill: #445760; }
+    .wolf-inner-ear { fill: #e17055; }
+    .wolf-nose { fill: #2d3436; }
+    .wolf-eye { fill: #54da57; }
+    .wolf-teeth { fill: #f1f1f1; }
+    .wolf-accent { fill: #54da57; opacity: 0.8; }
+  </style>
+  
+  <!-- Elementos Decorativos - Fundo -->
+  <circle cx="255" cy="255" r="200" class="wolf-accent" opacity="0.15" />
+  
+  <!-- Orelhas -->
+  <path class="wolf-body" d="M155,125 L125,50 C125,50 110,80 105,125 Z"/>
+  <path class="wolf-body" d="M355,125 L385,50 C385,50 400,80 405,125 Z"/>
+  <path class="wolf-inner-ear" d="M140,115 L125,75 C125,75 115,95 115,115 Z"/>
+  <path class="wolf-inner-ear" d="M370,115 L385,75 C385,75 395,95 395,115 Z"/>
+  
+  <!-- Cabeça -->
+  <path class="wolf-body" d="M255,375 C345,375 410,320 410,205 C410,90 345,70 255,70 C165,70 100,90 100,205 C100,320 165,375 255,375 Z"/>
+  
+  <!-- Rosto -->
+  <path class="wolf-face" d="M255,325 C315,325 360,295 360,215 C360,135 315,130 255,130 C195,130 150,135 150,215 C150,295 195,325 255,325 Z"/>
+  
+  <!-- Olhos -->
+  <ellipse class="wolf-light-accent" cx="200" cy="200" rx="25" ry="25"/>
+  <ellipse class="wolf-light-accent" cx="310" cy="200" rx="25" ry="25"/>
+  <ellipse class="wolf-eye" cx="200" cy="200" rx="15" ry="15"/>
+  <ellipse class="wolf-eye" cx="310" cy="200" rx="15" ry="15"/>
+  <ellipse class="wolf-dark" cx="200" cy="200" rx="8" ry="8"/>
+  <ellipse class="wolf-dark" cx="310" cy="200" rx="8" ry="8"/>
+  <ellipse fill="white" cx="195" cy="195" rx="5" ry="5"/>
+  <ellipse fill="white" cx="305" cy="195" rx="5" ry="5"/>
+  
+  <!-- Focinho -->
+  <path class="wolf-dark" d="M255,290 C275,290 310,270 310,240 C310,210 275,205 255,205 C235,205 200,210 200,240 C200,270 235,290 255,290 Z"/>
+  <ellipse class="wolf-nose" cx="255" cy="240" rx="15" ry="10"/>
+  
+  <!-- Bochechas -->
+  <path class="wolf-light" d="M160,225 C180,255 180,265 175,275 C170,285 155,275 150,265 C145,255 145,220 160,225 Z"/>
+  <path class="wolf-light" d="M350,225 C330,255 330,265 335,275 C340,285 355,275 360,265 C365,255 365,220 350,225 Z"/>
+  
+  <!-- Boca - Sorriso -->
+  <path fill="none" stroke="#2d3436" stroke-width="2" d="M235,265 C245,280 265,280 275,265"/>
+  <path class="wolf-dark" d="M245,265 L235,280 C235,280 245,285 255,285 C265,285 275,280 275,280 L265,265 Z"/>
+  <path class="wolf-teeth" d="M245,265 L235,280 L245,270 Z"/>
+  <path class="wolf-teeth" d="M265,265 L275,280 L265,270 Z"/>
+  
+  <!-- Elementos decorativos - silhuetas de lobos menores representando equipe -->
+  <path class="wolf-accent" d="M120,400 C150,380 150,360 155,350 C160,340 140,330 130,335 C120,340 110,350 120,400 Z" />
+  <path class="wolf-accent" d="M390,400 C360,380 360,360 355,350 C350,340 370,330 380,335 C390,340 400,350 390,400 Z" />
+  
+  <!-- Mini lobos representando a alcateia/equipe -->
+  <g transform="translate(90, 390) scale(0.2)">
+    <path class="wolf-body" d="M255,375 C345,375 410,320 410,205 C410,90 345,70 255,70 C165,70 100,90 100,205 C100,320 165,375 255,375 Z"/>
+    <ellipse class="wolf-eye" cx="200" cy="200" rx="15" ry="15"/>
+    <ellipse class="wolf-eye" cx="310" cy="200" rx="15" ry="15"/>
+  </g>
+  
+  <g transform="translate(380, 390) scale(0.2)">
+    <path class="wolf-body" d="M255,375 C345,375 410,320 410,205 C410,90 345,70 255,70 C165,70 100,90 100,205 C100,320 165,375 255,375 Z"/>
+    <ellipse class="wolf-eye" cx="200" cy="200" rx="15" ry="15"/>
+    <ellipse class="wolf-eye" cx="310" cy="200" rx="15" ry="15"/>
+  </g>
+  
+  <g transform="translate(255, 420) scale(0.15)">
+    <path class="wolf-body" d="M255,375 C345,375 410,320 410,205 C410,90 345,70 255,70 C165,70 100,90 100,205 C100,320 165,375 255,375 Z"/>
+    <ellipse class="wolf-eye" cx="200" cy="200" rx="15" ry="15"/>
+    <ellipse class="wolf-eye" cx="310" cy="200" rx="15" ry="15"/>
+  </g>
+</svg> 
