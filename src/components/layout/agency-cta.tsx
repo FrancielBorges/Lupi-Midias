@@ -7,8 +7,9 @@ import { Check, ArrowRight } from 'lucide-react';
 export function AgencyCTA() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Aqui você pode adicionar lógica para enviar os dados do formulário para seu servidor/backend
-    // Redirecionamento para a página de agradecimento
+    // Esta função permite um feedback visual para o usuário
+    // mas o Netlify Forms irá capturar e enviar o formulário automaticamente
+    // para o e-mail configurado (fraancieelj@gmail.com)
     window.location.href = '/obrigado';
   };
 
@@ -99,53 +100,72 @@ export function AgencyCTA() {
                 <div className="bg-background/20 rounded-xl p-6 backdrop-blur-sm border border-primary/10">
                   <h3 className="text-xl font-bold mb-6">Agende sua Consultoria Gratuita</h3>
                   
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <label className="text-sm text-foreground/70 mb-1 block">Nome</label>
-                      <input 
-                        type="text" 
-                        name="nome"
-                        required
-                        className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
-                        placeholder="Seu nome" 
-                      />
-                    </div>
+                  <form 
+                    id="consultoria-form"
+                    name="consultoria"
+                    method="POST"
+                    data-netlify="true"
+                    onSubmit={handleSubmit}
+                    className="relative z-10 mt-8 max-w-xl mx-auto"
+                    netlify-honeypot="bot-field"
+                  >
+                    <input type="hidden" name="form-name" value="consultoria" />
                     
-                    <div>
-                      <label className="text-sm text-foreground/70 mb-1 block">Email</label>
-                      <input 
-                        type="email" 
-                        name="email"
-                        required
-                        className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
-                        placeholder="seuemail@exemplo.com" 
-                      />
-                    </div>
+                    {/* Campo honeypot para evitar spam */}
+                    <p className="hidden">
+                      <label>
+                        Não preencha este campo se você for humano: <input name="bot-field" />
+                      </label>
+                    </p>
                     
-                    <div>
-                      <label className="text-sm text-foreground/70 mb-1 block">Empresa</label>
-                      <input 
-                        type="text" 
-                        name="empresa"
-                        required
-                        className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
-                        placeholder="Nome da sua empresa" 
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="text-sm text-foreground/70 mb-1 block">Orçamento Mensal em Anúncios</label>
-                      <select 
-                        name="orcamento"
-                        required
-                        className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
-                      >
-                        <option value="">Selecione uma opção</option>
-                        <option value="5000">Até R$ 5.000</option>
-                        <option value="10000">R$ 5.000 a R$ 10.000</option>
-                        <option value="30000">R$ 10.000 a R$ 30.000</option>
-                        <option value="more">Mais de R$ 30.000</option>
-                      </select>
+                    <div className="grid gap-6 mb-8">
+                      <div>
+                        <label className="text-sm text-foreground/70 mb-1 block">Nome</label>
+                        <input 
+                          type="text" 
+                          name="nome"
+                          required
+                          className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
+                          placeholder="Seu nome" 
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm text-foreground/70 mb-1 block">Email</label>
+                        <input 
+                          type="email" 
+                          name="email"
+                          required
+                          className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
+                          placeholder="seuemail@exemplo.com" 
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm text-foreground/70 mb-1 block">Empresa</label>
+                        <input 
+                          type="text" 
+                          name="empresa"
+                          required
+                          className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all" 
+                          placeholder="Nome da sua empresa" 
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm text-foreground/70 mb-1 block">Orçamento Mensal em Anúncios</label>
+                        <select 
+                          name="orcamento"
+                          required
+                          className="w-full bg-background/50 border border-primary/20 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
+                        >
+                          <option value="">Selecione uma opção</option>
+                          <option value="5000">Até R$ 5.000</option>
+                          <option value="10000">R$ 5.000 a R$ 10.000</option>
+                          <option value="30000">R$ 10.000 a R$ 30.000</option>
+                          <option value="more">Mais de R$ 30.000</option>
+                        </select>
+                      </div>
                     </div>
                     
                     <motion.div

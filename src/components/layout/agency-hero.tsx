@@ -135,10 +135,7 @@ export function AgencyHero() {
                   if (casesSection) {
                     casesSection.scrollIntoView({ behavior: 'smooth' });
                   } else {
-                    const servicesSection = document.getElementById('serviços');
-                    if (servicesSection) {
-                      servicesSection.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    navigate('/cases');
                   }
                 }}
               >

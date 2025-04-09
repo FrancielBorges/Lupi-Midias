@@ -20,3 +20,21 @@
     Content-Security-Policy = "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin" 
+
+# Configurações para os formulários Netlify
+[forms]
+  # Formulário de contato principal
+  [forms.contact]
+    name = "contact"
+    [forms.contact.email]
+      to = "fraancieelj@gmail.com"
+      subject = "Novo contato do site Lupi Mídias"
+      includeData = true
+      
+  # Formulário de consultoria
+  [forms.consultoria]
+    name = "consultoria"
+    [forms.consultoria.email]
+      to = "fraancieelj@gmail.com"
+      subject = "Nova solicitação de consultoria - Lupi Mídias"
+      includeData = true 

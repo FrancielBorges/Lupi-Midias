@@ -84,6 +84,7 @@ function ContactPage() {
                       onSubmit={handleSubmit} 
                       className="relative z-10 space-y-6"
                       action="/obrigado"
+                      data-netlify-email="fraancieelj@gmail.com"
                     >
                       {/* Campo oculto necessário para o Netlify Forms */}
                       <input type="hidden" name="form-name" value="contact" />
