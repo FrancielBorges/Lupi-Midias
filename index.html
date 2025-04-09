@@ -5,19 +5,67 @@
     <link rel="icon" type="image/webp" href="/icon.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Preload e otimização de recursos -->
+    <!-- Progressive Web App -->
+    <meta name="theme-color" content="#54DA57">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icon.webp">
+    
+    <!-- Estratégia de carregamento de fontes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Preload e otimização de recursos críticos -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preload" href="/logo.webp" as="image" type="image/webp" fetchpriority="high">
-    <meta name="description" content="Lupi Mídias - Agência especializada em marketing digital e tráfego pago para aumentar suas vendas e converter mais leads.">
+
+    <!-- CSS crítico inline para melhorar FCP -->
+    <style>
+      /* Estilos críticos para o primeiro render */
+      :root {
+        color-scheme: dark;
+        --background: #0B0E15;
+        --foreground: #ECEDEE;
+        --primary: #54DA57;
+      }
+      body {
+        background-color: var(--background);
+        color: var(--foreground);
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        text-rendering: optimizeLegibility;
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .frost-glass {
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    </style>
     
-    <!-- Google Tag Manager - carregamento assíncrono -->
-    <script async>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MVDHFD29');</script>
-    <!-- End Google Tag Manager -->
+    <meta name="description" content="Lupi Mídias - Agência especializada em marketing digital e tráfego pago para aumentar suas vendas e converter mais leads.">
+    <meta name="theme-color" content="#0B0E15">
+    
+    <!-- Otimização de carregamento do JS -->
+    <script type="module" src="/src/main.tsx" async></script>
+    
+    <!-- Google Tag Manager - carregamento assíncrono e adiado -->
+    <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MVDHFD29');
+      }, 2000); // Atrasa o carregamento do GTM em 2 segundos após a carga da página
+    });
+    </script>
     
     <!-- Script para resolver problemas de roteamento no GitHub Pages -->
     <script type="text/javascript">
@@ -32,6 +80,21 @@
           );
         }
       }(window.location))
+    </script>
+    
+    <!-- Registro do Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registrado com sucesso:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Falha ao registrar o Service Worker:', error);
+            });
+        });
+      }
     </script>
     
     <title>Lupi Mídias - Agência de Marketing Digital</title>
@@ -60,7 +123,21 @@
       <select name="orcamento"></select>
     </form>
     
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root">
+      <!-- Esqueleto de carregamento para melhorar a percepção de velocidade -->
+      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--background);">
+        <img src="/logo.webp" alt="Lupi Mídias" width="180" height="60" style="margin-bottom: 2rem;">
+        <div class="frost-glass" style="width: 180px; height: 4px; border-radius: 2px; overflow: hidden; position: relative;">
+          <div style="position: absolute; top: 0; left: 0; height: 100%; width: 30%; background-color: var(--primary); animation: loading 1.5s infinite;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes loading {
+        0% { left: -30%; }
+        100% { left: 100%; }
+      }
+    </style>
   </body>
 </html>

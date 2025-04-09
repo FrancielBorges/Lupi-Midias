@@ -1,0 +1,61 @@
+{
+  "name": "Lupi Mídias - Agência de Marketing Digital",
+  "short_name": "Lupi Mídias",
+  "description": "Agência especializada em marketing digital e tráfego pago para aumentar suas vendas e converter mais leads.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0E15",
+  "theme_color": "#54DA57",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot1.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Tela inicial da Lupi Mídias"
+    },
+    {
+      "src": "/screenshot2.webp",
+      "sizes": "1280x720",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Serviços da Lupi Mídias"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Contato",
+      "url": "/contato",
+      "description": "Entre em contato conosco"
+    },
+    {
+      "name": "Serviços",
+      "url": "/#services",
+      "description": "Conheça nossos serviços"
+    }
+  ],
+  "categories": ["business", "marketing", "advertising"]
+} 
