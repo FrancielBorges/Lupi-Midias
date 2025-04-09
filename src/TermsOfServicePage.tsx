@@ -8,7 +8,7 @@ import './App.css';
 
 function TermsOfServicePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground relative" style={{
+    <div id="top" className="min-h-screen bg-background text-foreground relative" style={{
       backgroundImage: `
         radial-gradient(circle at 15% 50%, rgba(84, 218, 87, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 85% 30%, rgba(84, 218, 87, 0.15) 0%, transparent 40%),
