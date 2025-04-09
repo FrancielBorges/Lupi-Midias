@@ -27,8 +27,8 @@ Este site foi desenvolvido utilizando React, TypeScript, Vite e TailwindCSS, ofe
 
 1. Clone o repositório
    ```bash
-   git clone [URL_DO_REPOSITÓRIO]
-   cd lupi-midias-site
+   git clone https://github.com/FrancielBorges/Lupi-Midias.git
+   cd Lupi-Midias
    ```
 
 2. Instale as dependências
